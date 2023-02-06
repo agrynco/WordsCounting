@@ -1,4 +1,8 @@
-﻿namespace WordsCounting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace WordsCounting;
 
 public static class WordCountingHelpers
 {
