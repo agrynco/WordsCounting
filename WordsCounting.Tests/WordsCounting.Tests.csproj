@@ -16,4 +16,8 @@
         <ProjectReference Include="..\WordsCounting\WordsCounting.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="TestResults" />
+    </ItemGroup>
+
 </Project>
