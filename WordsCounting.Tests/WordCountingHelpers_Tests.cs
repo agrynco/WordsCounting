@@ -10,8 +10,13 @@ public class WordCountingHelpers_Tests
     {
         var expected = new[]
         {
-            new WordCount("Go", 1), new WordCount("do", 2), new WordCount("that", 2), new WordCount("thing", 1),
-            new WordCount("you", 1), new WordCount("so", 1), new WordCount("well", 1)
+            new WordCount("Go", 1), 
+            new WordCount("do", 2), 
+            new WordCount("that", 2), 
+            new WordCount("thing", 1),
+            new WordCount("you", 1),
+            new WordCount("so", 1), 
+            new WordCount("well", 1)
         };
 
         var actual = "Go do that thing that you do so well".CountWords().ToArray();
