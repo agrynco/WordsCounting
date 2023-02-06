@@ -8,16 +8,16 @@ public class WordCountingHelpers_Tests
     [Fact]
     public void CountWords_ShouldReturnNonEmpty()
     {
-        var expected = new[]
+        var expected = new Dictionary<string, int>
         {
-            new WordCount("Go", 1), 
-            new WordCount("do", 2), 
-            new WordCount("that", 2), 
-            new WordCount("thing", 1),
-            new WordCount("you", 1),
-            new WordCount("so", 1), 
-            new WordCount("well", 1)
-        };
+            { "Go", 1 },
+            { "do", 2 },
+            { "that", 2 },
+            { "thing", 1 },
+            { "you", 1 },
+            { "so", 1 },
+            { "well", 1 }
+        }.ToWordCountArray();
 
         var actual = "Go do that thing that you do so well".CountWords().ToArray();
 
@@ -35,14 +35,14 @@ public class WordCountingHelpers_Tests
     [Fact]
     public void CountWords_ShouldReturnOneElement()
     {
-        string input = "singlewordstring";
+        const string INPUT = "singlewordstring";
 
         var expected = new[]
         {
-            new WordCount("singlewordstring", 1)
+            new WordCount(INPUT, 1)
         };
 
-        var actual = input.CountWords();
+        var actual = INPUT.CountWords();
 
         Assert.Equal(expected, actual);
     }
@@ -50,17 +50,21 @@ public class WordCountingHelpers_Tests
     [Fact]
     public void ReadAsText_ShouldRaiseException()
     {
-        Assert.Throws<FileDoesNotExistException>(() => "NotExistedFileName".ReadAsText());
+        const string EXPECTED = "NotExistedFileName";
+        
+        var fileDoesNotExistException = Assert.Throws<FileDoesNotExistException>(() => EXPECTED.ReadAsText());
+        
+        fileDoesNotExistException.FileName.Should().Be(EXPECTED);
     }
-    
+
     [Fact]
     public void ReadAsText_ShouldReadFileOk()
     {
-        string fileName = "testFile.txt";
-        string fileContent = "some content";
-        
-        File.WriteAllText(fileName, fileContent);
+        const string FILE_NAME = "testFile.txt";
+        const string FILE_CONTENT = "some content";
 
-        fileName.ReadAsText().Should().Be(fileContent);
+        File.WriteAllText(FILE_NAME, FILE_CONTENT);
+
+        FILE_NAME.ReadAsText().Should().Be(FILE_CONTENT);
     }
 }

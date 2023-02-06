@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace WordsCounting;
 
@@ -10,11 +11,13 @@ public class FileDoesNotExistException : Exception
         FileName = fileName;
     }
 
+    [ExcludeFromCodeCoverage]
     protected FileDoesNotExistException(SerializationInfo info, StreamingContext context) : base(info, context)
     {
         FileName = info.GetString(nameof(FileName))!;
     }
 
+    [ExcludeFromCodeCoverage]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         base.GetObjectData(info, context);

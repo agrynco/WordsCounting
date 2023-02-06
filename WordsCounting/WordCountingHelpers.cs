@@ -1,7 +1,10 @@
-﻿namespace WordsCounting;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace WordsCounting;
 
 public static class WordCountingHelpers
 {
+    [ExcludeFromCodeCoverage]
     public static void PrintResult(this IEnumerable<WordCount> wordsCount)
     {
         wordsCount.ToList().ForEach(wordCount => { Console.WriteLine(wordCount.ToString()); });
