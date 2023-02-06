@@ -1,4 +1,5 @@
-﻿using WordsCounting;
+﻿using System.Reflection;
+using WordsCounting;
 
 string fileName = "demo.txt";
 if (args.Length == 1)
@@ -7,7 +8,8 @@ if (args.Length == 1)
 }
 else
 {
-    Console.WriteLine("Demo file will be used as source of words");
+    Console.WriteLine($"{Path.GetFileName(Assembly.GetEntryAssembly()!.Location)} [fileName]");
+    Console.WriteLine("No fileName is specified so demo file will be used as source of words");
 }
 
 File.OpenText(fileName).ReadToEnd()

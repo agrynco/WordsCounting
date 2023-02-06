@@ -6,8 +6,7 @@ public static class WordCountingHelpers
     {
         wordsCount.ToList().ForEach(wordCount =>
         {
-            Console.Write($"{wordCount.Count}:".PadRight(5));
-            Console.WriteLine(wordCount.Word);
+            Console.WriteLine(wordCount.ToString());
         });
     }
 
