@@ -12,6 +12,14 @@ else
     Console.WriteLine("No fileName is specified so demo file will be used as source of words");
 }
 
-File.OpenText(fileName).ReadToEnd()
+if (!File.Exists(fileName))
+{
+    Console.WriteLine($"File with name {fileName} does not exist");
+    return 1;
+}
+
+fileName.ReadAsText()
     .CountWords()
     .PrintResult();
+
+return 0;
