@@ -6,16 +6,45 @@ namespace WordsCounting.Tests;
 public class WordCountingHelpers_Tests
 {
     [Fact]
-    public void CountWords_Test()
+    public void CountWords_ShouldReturnNonEmpty()
     {
-        var actual = "Go do that thing that you do so well".CountWords().ToArray();
+        var expected = new[]
+        {
+            new WordCount("Go", 1),
+            new WordCount("do", 2),
+            new WordCount("that", 2),
+            new WordCount("thing", 1),
+            new WordCount("you", 1),
+            new WordCount("so", 1),
+            new WordCount("well", 1)
+        };
         
-        actual.Single(cw => cw.Word == "Go").Count.Should().Be(1);
-        actual.Single(cw => cw.Word == "do").Count.Should().Be(2);
-        actual.Single(cw => cw.Word == "that").Count.Should().Be(2);
-        actual.Single(cw => cw.Word == "thing").Count.Should().Be(1);
-        actual.Single(cw => cw.Word == "you").Count.Should().Be(1);
-        actual.Single(cw => cw.Word == "so").Count.Should().Be(1);
-        actual.Single(cw => cw.Word == "well").Count.Should().Be(1);
+        WordCount[] actual = "Go do that thing that you do so well".CountWords().ToArray();
+        
+        Assert.Equal(expected, actual);
+    }
+    
+    [Fact]
+    public void CountWords_ShouldReturnEmpty()
+    {
+        var actual = "".CountWords();
+
+        actual.Count().Should().Be(0);
+    }
+    
+    [Fact]
+    public void CountWords_ShouldReturnOneElement()
+    {
+        string input = "singlewordstring";
+        
+        var expected = new[]
+        {
+            new WordCount("singlewordstring", 1)
+
+        };
+        
+        var actual = input.CountWords();
+
+        Assert.Equal(expected, actual);
     }
 }

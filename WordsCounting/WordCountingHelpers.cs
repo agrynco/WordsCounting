@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace WordsCounting;
+﻿namespace WordsCounting;
 
 public static class WordCountingHelpers
 {
@@ -14,10 +10,12 @@ public static class WordCountingHelpers
             Console.WriteLine(wordCount.Word);
         });
     }
-    
+
     public static IEnumerable<WordCount> CountWords(this string input)
     {
-        return input.Split(" ").GroupBy(word => word).Select(group => new WordCount(group.Key, group.Count())).ToList();
+        return input.Split(" ")
+            .Where(word => !string.IsNullOrEmpty(word))
+            .GroupBy(word => word)
+            .Select(group => new WordCount(group.Key, group.Count())).ToList();
     }
-
 }
