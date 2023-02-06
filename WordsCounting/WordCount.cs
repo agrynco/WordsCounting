@@ -11,7 +11,7 @@ public record WordCount
 
         if (count < 1)
         {
-            throw new ArgumentException("Parameter can not 0 or negative", nameof(count));
+            throw new ArgumentException("Parameter can not be 0 or negative", nameof(count));
         }
 
         Word = word;
